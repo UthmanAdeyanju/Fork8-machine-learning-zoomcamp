@@ -1,28 +1,16 @@
+---
+prev_url: 08-summary.md
+next_url: ../06-trees/01-credit-risk.md
+---
+# Explore more
 
-## 5.9 Explore more
+This unit has no video. It lists a few things you can try on your own to go
+deeper into the topics of this module:
+
+![A packaged model can be served through different frameworks, environments, and cloud destinations.](images/09-explore-more-01-deployment-choices-imagegen.jpg)
+
+*Figure: Deployment choices form a stack from the model artifact to the cloud.*
 
 * Flask is not the only framework for creating web services. Try others, e.g. FastAPI.
 * Experiment with other ways of managing environment, e.g. virtual env, conda, poetry.
 * Explore other ways of deploying web services, e.g. GCP, Azure, Heroku, Python Anywhere, etc.
-
- 
-Add notes from the video (PRs are welcome)
-
-
-<table>
-   <tr>
-      <td>⚠️</td>
-      <td>
-         The notes are written by the community. <br>
-         If you see an error here, please create a PR with a fix.
-      </td>
-   </tr>
-</table>
-
-
-## Navigation
-
-* [Machine Learning Zoomcamp course](../)
-* [Session 5: Deploying Machine Learning Models](./)
-* Previous: [Summary](08-summary.md)
-* Next: [Homework](homework.md)

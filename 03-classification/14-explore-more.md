@@ -1,7 +1,15 @@
+---
+prev_url: 13-summary.md
+next_url: ../04-evaluation/01-overview.md
+---
 
-## 3.14 Explore more
+# Explore more
 
 More things
+
+![A classification experiment bench for selecting features, encoding categories, scaling numbers, and comparing models.](images/14-explore-more-01-preprocessing-model-comparison-imagegen.jpg)
+
+*Figure: Try alternative preprocessing and models, then compare them on validation data.*
 
 * Try to exclude least useful features
 
@@ -17,11 +25,3 @@ Other projects
 
 * Lead scoring - https://www.kaggle.com/ashydv/leads-dataset
 * Default prediction - https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients
-
-
-## Navigation
-
-* [Machine Learning Zoomcamp course](../)
-* [Session 3: Machine Learning for Classification](./)
-* Previous: [Summary](13-summary.md)
-* Next: [Homework](homework.md)

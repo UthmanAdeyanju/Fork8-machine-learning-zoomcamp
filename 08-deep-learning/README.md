@@ -1,7 +1,24 @@
 ## 8. Neural Networks and Deep Learning
 
+Note: in the module we use TensorFlow+Keras. These videos 
+were recorded a while ago, and while they are still
+relevant, PyTorch became the to-go framework for training
+neural networks. 
+
+That's why we also re-recorded the content of this module
+with PyTorch. You can find the materials in the [pytorch/](pytorch/) folder.
+
+We don't go over the theory in the PyTorch part. For that,
+refer to the main module (the one that still uses Keras).
+
+How to watch it:
+
+- If you want to learn PyTorch only, watch the module content for the theory only and then follow along the content of the PyTorch part
+- If you want to learn both (and have time), first do the module and then the PyTorch part 
+
+TensorFlow module videos:
+
 - 8.1 [Fashion classification](01-fashion-classification.md)
-- 8.1b [Setting up the Environment on Saturn Cloud](01b-saturn-cloud.md)
 - 8.2 [TensorFlow and Keras](02-tensorflow-keras.md)
 - 8.3 [Pre-trained convolutional neural networks](03-pretrained-models.md)
 - 8.4 [Convolutional neural networks](04-conv-neural-nets.md)
@@ -15,7 +32,6 @@
 - 8.12 [Using the model](12-using-model.md)
 - 8.13 [Summary](13-summary.md)
 - 8.14 [Explore more](14-explore-more.md)
-- 8.15 [Homework](homework.md)
 
 ## Community notes
 
@@ -32,8 +48,5 @@ Did you take notes? You can share them here (or in each unit separately)
 * [Notes from Peter Ernicke](https://knowmledge.com/category/courses/ml-zoomcamp/deep-learning/)
 * [Notes from Kemal Dahha](https://github.com/kemaldahha/machine-learning-course/blob/main/week_8_notes.ipynb)
 * [Notes from Maximilien Eyengue](https://github.com/maxim-eyengue/Python-Codes/blob/main/ML_Zoomcamp_2024/08_deep_learning/Summary_Session_08.md)
+* [Notes from Revathy Ramalingam](https://github.com/RevathyRamalingam/machineLearning/blob/main/08-DeepLearning/README.md)
 * Add your notes here
-
-## Links
-
-* [Saturn Cloud: notebooks with GPU](https://bit.ly/saturn-mlzoomcamp)

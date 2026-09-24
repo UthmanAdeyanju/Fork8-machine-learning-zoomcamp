@@ -1,19 +1,21 @@
-## 4.9 Explore more
+---
+prev_url: 08-summary.md
+next_url: ../05-deployment/01-intro.md
+---
+# Explore more
 
-* Check the precision and recall of the dummy classifier that always predict "FALSE"
+This unit has no video. It lists a few things you can try on your own to go
+deeper into the topics of this module:
+
+![A classifier score distribution connects a threshold to confusion counts, precision, recall, and the precision-recall curve.](images/09-explore-more-01-threshold-precision-recall-imagegen.jpg)
+
+*Figure: Changing the threshold changes the precision-recall trade-off.*
+
+* Check the precision and recall of the dummy classifier that always predicts "FALSE"
 * F1 score = 2 P R / (P + R)
-* Evaluate precision and recall at different thresholds, plot P vs R - this way you'll get the precision/recall curve (similar to ROC curve)
-* Area under the PR curve is also a useful metric
+* Evaluate precision and recall at different thresholds, plot P vs R - this way you'll get the precision/recall curve (similar to the ROC curve)
+* The area under the PR curve is also a useful metric
 
-
-### Other projects
+## Other projects
 
 * Calculate the metrics for the suggested datasets from the previous week
-
-
-## Navigation
-
-* [Machine Learning Zoomcamp course](../)
-* [Session 4: Evaluation Metrics for Classification](./)
-* Previous: [Summary](08-summary.md)
-* Next: [Homework](homework.md)

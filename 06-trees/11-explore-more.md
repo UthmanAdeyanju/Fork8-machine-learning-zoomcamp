@@ -1,5 +1,13 @@
+---
+prev_url: 10-summary.md
+next_url: ../08-deep-learning/01-fashion-classification.md
+---
 
-## 6.11 Explore more
+# Explore more
+
+![A dataset branches into EDA, feature importance, forests, and boosting before producing new insights.](images/11-explore-more-01-ensemble-experiments-imagegen.jpg)
+
+*Figure: Explore several analyses and ensemble models to learn more from the same data.*
 
 * For this dataset we didn't do EDA or feature engineering. You can do it to get more insights into the problem.
 * For random forest, there are more parameters that we can tune. Check max_features and bootstrap.
@@ -12,22 +20,3 @@
 ## Notes
 
 Add notes from the video (PRs are welcome)
-
-
-<table>
-   <tr>
-      <td>⚠️</td>
-      <td>
-         The notes are written by the community. <br>
-         If you see an error here, please create a PR with a fix.
-      </td>
-   </tr>
-</table>
-
-
-## Navigation
-
-* [Machine Learning Zoomcamp course](../)
-* [Session 6: Decision Trees and Ensemble Learning](./)
-* Previous: [Summary](10-summary.md)
-* Next: [Homework](homework.md)

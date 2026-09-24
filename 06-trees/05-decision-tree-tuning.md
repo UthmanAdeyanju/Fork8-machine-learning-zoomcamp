@@ -1,9 +1,177 @@
-## 6.5 Decision trees parameter tuning
+---
+video_url: "https://www.youtube.com/watch?v=XJaxwH50Qok&list=PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR"
+code:
+  - label: Notebook
+    path: notebook.ipynb
+prev_url: 04-decision-tree-learning.md
+next_url: 06-random-forest.md
+---
+# Decision trees parameter tuning
 
-<a href="https://www.youtube.com/watch?v=XJaxwH50Qok&list=PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR"><img src="images/thumbnail-6-05.jpg"></a>
+In this unit we tune the decision tree: we try different values of
+`max_depth` and `min_samples_leaf`, pick the combination with the best
+validation AUC, and look at the final tree.
 
-[Slides](https://www.slideshare.net/AlexeyGrigorev/ml-zoomcamp-6-decision-trees-and-ensemble-learning)
+## Which parameters to tune
 
+`DecisionTreeClassifier` has many parameters - `criterion`, which is
+the impurity measure, `max_depth`, `min_samples_leaf`, and others. The
+two that matter most are:
+
+- `max_depth` - the maximum number of levels. It limits how specific
+  the rules can get.
+- `min_samples_leaf` - the minimum number of samples in a leaf. It
+  prevents the tree from creating leaves that cover just one or two
+  customers.
+
+Tuning means selecting the values that give the best score on the
+validation set - AUC in our case.
+
+## Selecting max_depth
+
+We start with `max_depth` alone. We try depths from 1 to 20, plus
+`None` (no limit), and record the validation AUC for each:
+
+```python
+depths = [1, 2, 3, 4, 5, 6, 10, 15, 20, None]
+
+for depth in depths: 
+    dt = DecisionTreeClassifier(max_depth=depth)
+    dt.fit(X_train, y_train)
+    
+    y_pred = dt.predict_proba(X_val)[:, 1]
+    auc = roc_auc_score(y_val, y_pred)
+    
+    print('%4s -> %.3f' % (depth, auc))
+```
+
+```text
+   1 -> 0.606
+   2 -> 0.669
+   3 -> 0.739
+   4 -> 0.761
+   5 -> 0.767
+   6 -> 0.744
+  10 -> 0.683
+  15 -> 0.654
+  20 -> 0.654
+None -> 0.662
+```
+
+Depths 4, 5 and 6 are the best (AUC around 0.76). Trees that are too
+shallow underfit; deep trees overfit and end up worse than the simple
+ones.
+
+## Adding min_samples_leaf
+
+Now we take the promising depths - 4, 5 and 6 - and for each of them
+try several values of `min_samples_leaf`. We store the results as
+tuples in a list:
+
+```python
+scores = []
+
+for depth in [4, 5, 6]:
+    for s in [1, 5, 10, 15, 20, 500, 100, 200]:
+        dt = DecisionTreeClassifier(max_depth=depth, min_samples_leaf=s)
+        dt.fit(X_train, y_train)
+
+        y_pred = dt.predict_proba(X_val)[:, 1]
+        auc = roc_auc_score(y_val, y_pred)
+        
+        scores.append((depth, s, auc))
+```
+
+Then we put the scores into a dataframe:
+
+```python
+columns = ['max_depth', 'min_samples_leaf', 'auc']
+df_scores = pd.DataFrame(scores, columns=columns)
+```
+
+The sorted dataframe is hard to scan. It's easier to reshape it: rows
+for `min_samples_leaf`, columns for `max_depth`, and the AUC in the
+cells. That's what the `pivot` method does:
+
+```python
+df_scores_pivot = df_scores.pivot(index='min_samples_leaf', columns=['max_depth'], values=['auc'])
+df_scores_pivot.round(3)
+```
+
+```text
+                    auc              
+max_depth             4      5      6
+min_samples_leaf                     
+1                 0.761  0.767  0.759
+5                 0.761  0.768  0.759
+10                0.761  0.762  0.778
+15                0.764  0.772  0.785
+20                0.761  0.774  0.774
+100               0.756  0.763  0.776
+200               0.747  0.759  0.768
+500               0.680  0.680  0.680
+```
+
+Even easier to read as a heatmap - the best cell is the lightest one:
+
+```python
+sns.heatmap(df_scores_pivot, annot=True, fmt=".3f")
+```
+
+![The heatmap of AUC values; max_depth=6 and min_samples_leaf=15 wins](images/05-decision-tree-tuning-05-heatmap-imagegen.jpg)
+
+The best combination is `max_depth=6` and `min_samples_leaf=15`, with
+an AUC of 0.785 - better than anything we saw when tuning `max_depth`
+alone.
+
+Note that we only searched depths 4-6 for the second parameter. On a
+large dataset it would be too slow to try every combination, so we
+first select `max_depth` and then tune the rest. On this small dataset
+we could afford to check more combinations - and if we did, other
+close pairs would show up. It's a good habit to start with a coarse
+search and refine it.
+
+![A wider search over more depths shows several close combinations](images/05-decision-tree-tuning-07-wider-search-imagegen.jpg)
+
+## The final tree
+
+Let's train the tree with the tuned parameters and look at the rules it
+learned:
+
+```python
+dt = DecisionTreeClassifier(max_depth=6, min_samples_leaf=15)
+dt.fit(X_train, y_train)
+
+print(export_text(dt, feature_names=list(dv.get_feature_names_out())))
+```
+
+```text
+|--- records=no <= 0.50
+|   |--- seniority <= 6.50
+|   |   |--- amount <= 862.50
+|   |   |   |--- price <= 925.00
+|   |   |   |   |--- amount <= 525.00
+|   |   |   |   |   |--- class: 1
+|   |   |   |   |--- amount >  525.00
+|   |   |   |   |   |--- class: 1
+|   |   |   |--- price >  925.00
+|   |   |   |   |--- price <= 1382.00
+|   |   |   |   |   |--- class: 0
+|   |   |   |   |--- price >  1382.00
+|   |   |   |   |   |--- class: 0
+|   |   |--- amount >  862.50
+|   |   |   |--- assets <= 8250.00
+...
+```
+
+This tree is still readable, unlike the unlimited one from before: it
+starts with `records`, then looks at `seniority`, `amount`, `price` and
+`assets` to decide whether a customer is likely to default.
+
+One caution: when you scan the results, watch out for parameter values
+that don't make sense, like `nan` creeping into the grid. A
+combination can show a good score by accident - check that the values
+you pick actually control the size of the tree the way you intend.
 
 ## Notes
 
@@ -35,24 +203,3 @@ reducing the chance of creating nodes that are too specific to the training data
       
 It's then important to find the right balance between `max_depth` and `min_samples_leaf` to achieve optimal model performance.
 This involves a trade-off between bias and variance, and the best values depend on the specific dataset and problem.
-
-Add notes from the video (PRs are welcome)
-
-<table>
-   <tr>
-      <td>⚠️</td>
-      <td>
-         The notes are written by the community. <br>
-         If you see an error here, please create a PR with a fix.
-      </td>
-   </tr>
-</table>
-
-* [Notes from Peter Ernicke](https://knowmledge.com/2023/10/23/ml-zoomcamp-2023-decision-trees-and-ensemble-learning-part-8/)
-
-## Navigation
-
-* [Machine Learning Zoomcamp course](../)
-* [Session 6: Decision Trees and Ensemble Learning](./)
-* Previous: [Decision tree learning algorithm](04-decision-tree-learning.md)
-* Next: [Ensemble learning and random forest](06-random-forest.md)

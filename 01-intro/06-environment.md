@@ -1,7 +1,11 @@
-##  Setting up the Environment
+---
+video_url: https://www.youtube.com/watch?v=pqQFlV3f9Bo&list=PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR
+prev_url: 05-model-selection.md
+next_url: 07-numpy.md
+---
+# Setting up the Environment
 
-In this section, we'll prepare the environment
-
+In this unit we prepare the environment for the course. The recommended option is GitHub Codespaces - a remote development environment that requires almost no configuration. If you prefer working locally, there are guides below for Ubuntu/WSL, Anaconda and cloud services.
 
 You need:
 
@@ -10,12 +14,49 @@ You need:
 * Matplotlib and Seaborn
 * Jupyter notebooks
 
-## Github Codespaces
+## GitHub Codespaces
 
-Video: https://www.youtube.com/watch?v=pqQFlV3f9Bo&list=PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR
+This is the recommended approach for the course.
 
-This is the recommended approach for the course
+GitHub Codespaces gives you a remote environment with almost everything we need already installed. You just have a remote machine and use it from your browser - or from the desktop version of Visual Studio Code. Here is the full walk-through from the video.
 
+First, create a new repository on GitHub - for example, a repository where you will put your homework. Add a README file, make it public, and choose Python as the .gitignore template.
+
+![Creating a new repository on GitHub](images/06-environment-01-create-repo-crisp.jpg)
+
+Then open the Code dropdown, switch to the Codespaces tab, and click "Create codespace on main". GitHub creates a Visual Studio Code instance for you in the browser.
+
+![Creating a codespace on the main branch](images/06-environment-02-create-codespace-crisp.jpg)
+
+If you don't like using the browser - it should just work there - you can open the same environment in Visual Studio Code desktop: click the button in the corner and choose "Open in VS Code". The first time you launch VS Code desktop it will prompt you to install an extension for Codespaces; if it doesn't, go to the extensions view and search for "GitHub Codespaces" - you need that extension to connect to the remote instance.
+
+Everything feels like developing locally. You can edit files, and you can open a terminal with Ctrl+` (or via the View menu). This is the usual file system of a remote Ubuntu machine - `git status`, `git commit` and `git push` all work, and pushing sends your changes back to GitHub.
+
+![The codespace opened in VS Code desktop with a terminal](images/06-environment-03-vscode-desktop-crisp.jpg)
+
+One trick from the video: the default prompt is quite long, so there is little space left for the command you type. You can shorten it:
+
+```bash
+PS1="> "
+```
+
+Now let's install the libraries we need for the course with pip:
+
+```bash
+pip install jupyter numpy pandas scikit-learn seaborn
+```
+
+Seaborn is a library for visualization. Later in the course you will also need XGBoost and TensorFlow - and this is exactly how you install them too.
+
+Now start Jupyter:
+
+```bash
+jupyter notebook
+```
+
+It starts remotely on the codespace, but you can use it locally. VS Code automatically detects that something is running on port 8888 and forwards it to your machine - see the Ports panel. Open the forwarded address, and if you are asked to log in, take the token (or the entire URL) from the terminal and paste it into the browser.
+
+That's it - you have a working environment: create a folder like `01-intro`, create a notebook, `import pandas as pd` and you are ready. For the homework you will typically read a CSV file with `pd.read_csv(...)`, finish the notebook, rename it to something like `homework.ipynb`, commit it, push it, and submit the URL of your repository in the homework form.
 
 ## Ubuntu 22.04 on AWS
 
@@ -104,7 +145,6 @@ To use Kaggle to open and run the Jupyter notebooks provided as part of this cou
 
 1. Find the URL of the notebook. 
    
-   ![See this example](images/sample-jupyter-notebook.png)
    
 2. To open the notebook in Kaggle, in your web browser launch paste the URL as shown in below example. (*note the additional https://kaggle.com/kernels/welcome?src= before the URL of the notebook*)
 
@@ -112,19 +152,16 @@ To use Kaggle to open and run the Jupyter notebooks provided as part of this cou
   
 3. Check if the notebook uses any datafile to read data from it. If yes, note the datafile name from the code.- *look for pd.read_csv("somefilename.csv")*. 
    
-   ![See this example](images/sample-code.png)
    
 4. You need to download the file into Kaggle. For this:
 
    a. Find the URL of the datafile in github. 
    
-   ![See this example](images/sample-data-file.png)
    
    b. Suppose the URL is https://github.com/alexeygrigorev/mlbookcamp-code/blob/master/chapter-02-car-price/data.csv , you need use the URL to raw file, which will look something like https://raw.githubusercontent.com/alexeygrigorev/mlbookcamp-code/master/chapter-02-car-price/data.csv
    
 5. In the notebook opened in Kaggle, add a Code block with the command to download the file - !wget your-datafile-url 
 
-   ![See this example](images/add-code-for-datafile-download.png)
    
 This way you can start with the exercise using Kaggle
 
@@ -140,12 +177,3 @@ Steps for Google Colab are same as that for Kaggle, except for some changes in S
 2. To open the notebook in Google Colab, in your web browser launch paste the URL as shown in below example. (*note the https://github.com/ in the URL of the notebook is replaced by https://colab.research.google.com/github/*)
 
    https://colab.research.google.com/github/alexeygrigorev/mlbookcamp-code/blob/master/chapter-02-car-price/02-carprice.ipynb
-
-
-
-## Navigation
-
-* [Machine Learning Zoomcamp course](../)
-* [Lesson 1: Introduction to Machine Learning](./)
-* Previous lesson: [The Modelling Step (Model Selection Process)](05-model-selection.md)
-* Next lesson: [Introduction to NumPy](07-numpy.md)
