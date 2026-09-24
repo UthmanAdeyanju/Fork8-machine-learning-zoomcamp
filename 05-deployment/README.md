@@ -1,7 +1,14 @@
 ## 5. Deploying Machine Learning Models
 
-> Note: in the videos we use Python 3.8. But you
-> should use Python 3.9
+Note: these materials are partly outdated, which
+is why we recorded a workshop that updates this module.
+You will find the materials in the [workshop/](workshop/) folder
+
+The theory in the module is still relevant, which is why we suggest you
+to watch both the workshop and the module content. While watching 
+the module content, focus on the theory part. The practical 
+part is all covered in the workshop. 
+
 
 - 5.1 [Intro / Session overview](01-intro.md)
 - 5.2 [Saving and loading the model](02-pickle.md)
@@ -13,6 +20,13 @@
 - 5.8 [Summary](08-summary.md)
 - 5.9 [Explore more](09-explore-more.md)
 - 5.10 [Homework](homework.md)
+
+
+How to watch it:
+
+- First, watch the units 5.1-5.6 
+- Then watch the workshop and do the practice 
+- Finally, do the homework
 
 
 ## Community notes
@@ -29,6 +43,8 @@ Did you take notes? You can share them here (or in each unit separately)
 * [Notebook with commands for pipenv, flask, gunicorn, and Docker](https://github.com/javier-cp6/ml-zoomcamp/blob/main/05-deployment/05-train-churn-model.ipynb)
 * [Notes from Peter Ernicke](https://knowmledge.com/category/courses/ml-zoomcamp/model-deployment/)
 * [Notes from Kemal Dahha](https://github.com/kemaldahha/machine-learning-course/blob/main/week_5_notes.ipynb)
+* [Notes from Williams Alnice](https://github.com/nice-bills/ml_zoomcamp/tree/main/module_5)
+* [Cohort 2025| Notes by Nitin Gupta](https://github.com/niting9881/ML-zoomcamp-local/blob/main/05-deployment/README.md)
 * Add your notes here
 
 ### Deployment tutorials
