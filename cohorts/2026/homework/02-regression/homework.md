@@ -148,7 +148,42 @@ Options:
 - 22.10
 - 221.0
 
+## Learning in Public
+
+Share what you learned from this homework in a short post, screenshot, or
+notebook excerpt. Use `#mlzoomcamp`, tag Alexey Grigorev or DataTalksClub, and
+submit the post link with your homework. Don't share credentials, private
+data, or other secrets.
+
+See the [learning in public guide](https://datatalks.club/docs/courses/zoomcamp-logistics/learning-in-public/) for more
+ideas and examples.
+
+### Example post for LinkedIn
+
+```text
+🚀 Completed Module 2 of Machine Learning Zoomcamp 2026!
+
+I trained a car fuel-efficiency regression model and compared missing-value
+strategies, regularization values, and split-seed stability.
+
+My repo: <LINK>
+
+#mlzoomcamp @Alexey Grigorev
+```
+
+### Example post for X
+
+```text
+Built a car fuel-efficiency regression model in Module 2 of #mlzoomcamp.
+
+✅ Compared missing-value strategies
+✅ Tuned regularization
+✅ Measured how the split seed changes RMSE
+
+My repo: <LINK>
+```
+
 ## Submit the results
 
 * Submit your results here: https://courses.datatalks.club/ml-zoomcamp-2026/homework/hw02
-* The numerical options are calculated from the pinned 2026 release. Use the value that matches your calculation; do not choose a merely close value.
+* The numerical options are calculated from the pinned 2026 release. If your answer doesn't match any option exactly, select the closest one. If it's exactly in between two options, select the higher value.

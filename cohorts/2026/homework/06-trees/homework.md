@@ -170,7 +170,43 @@ Which eta leads to the best RMSE score on the validation dataset?
 * 0.1
 * Both give equal value
 
+## Learning in Public
+
+Share what you learned from this homework in a short post, chart, or notebook
+excerpt. Use `#mlzoomcamp`, tag Alexey Grigorev or DataTalksClub, and submit the
+post link with your homework. Don't share credentials, private data, or other
+secrets.
+
+See the [learning in public guide](https://datatalks.club/docs/courses/zoomcamp-logistics/learning-in-public/) for more
+ideas and examples.
+
+### Example post for LinkedIn
+
+```text
+🚀 Completed Module 6 of Machine Learning Zoomcamp 2026!
+
+I compared decision trees, random forests, and XGBoost for car fuel-efficiency
+regression, then tuned tree depth, forest size, and learning rate.
+
+My repo: <LINK>
+
+#mlzoomcamp @Alexey Grigorev
+```
+
+### Example post for X
+
+```text
+Compared tree ensembles in Module 6 of #mlzoomcamp.
+
+🌳 Decision tree
+🌲 Random forest
+⚡ XGBoost
+📉 Tuned the validation RMSE
+
+My repo: <LINK>
+```
+
 ## Submit the results
 
 * Submit your results here: https://courses.datatalks.club/ml-zoomcamp-2026/homework/hw06
-* The numerical options are calculated from the pinned 2026 release. Use the value that matches your calculation; do not choose a merely close value.
+* The numerical options are calculated from the pinned 2026 release. If your answer doesn't match any option exactly, select the closest one. If it's exactly in between two options, select the higher value.
